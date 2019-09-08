@@ -1,13 +1,50 @@
 import tkinter as tk
 from tkinter import *
-master = Tk()
-r = tk.Tk()
+
+
+def save():
+    print('saved')
+
+
+def clearData():
+    print('Cleared Data')
+
+
+def new():
+    print('New')
+
+
+def getPos(val):
+    scale1 = val
+    print(scale1)
+
+# Vars
+
+r = Tk()
+scale1 =
+photoNum = 20
 r.title('Structure from Motion Control Panel')
-r = Canvas(master, width=400, height=600)
+
+menu = Menu(r)
+r.config(menu=menu)
+
+subMenu = Menu(menu)
+menu.add_cascade(label="File", menu=subMenu)
+
+subMenu.add_command(label="New...", command=new)
+subMenu.add_separator()
+subMenu.add_command(label="Exit", command=r.destroy)
+
+editMenu = Menu(menu)
+menu.add_cascade(label="Edit", menu=editMenu)
+editMenu.add_command(label="Clear Data", command=clearData)
 
 
+w = Scale(r, from_=0, to=42, command=getPos)
+w.pack()
 
-button = tk.Button(r, text='Stop', width=25, command=r.destroy) 
-button.pack()
-r.pack()
-r.mainloop()
+w = Scale(r, from_=0, to=photoNum+scale1, orient=HORIZONTAL)
+w.pack()
+print(scale1)
+mainloop()
+

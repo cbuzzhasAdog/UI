@@ -1,10 +1,44 @@
-from tkinter import *
-m1 = PanedWindow()
-m1.pack(fill = BOTH, expand = 1)
-left = Entry(m1, bd = 5)
-m1.add(left)
-m2 = PanedWindow(m1, orient = VERTICAL)
-m1.add(m2)
-top = Scale( m2, orient = HORIZONTAL)
-m2.add(top)
-m1.mainloop()
+# from tkinter import *
+#
+# def sel(num):
+#    selection = "Value = " + str(num)
+#    label.config(text = selection)
+#    var = num
+#
+#
+#
+# root = Tk()
+# var = DoubleVar()
+# scale = Scale( root, variable = var,command=sel)
+# scale.pack(anchor=CENTER)
+#
+#
+#
+# label = Label(root)
+# label.pack()
+#
+# root.mainloop()
+import tkinter as tk
+
+class Example(tk.Frame):
+    def __init__(self, parent):
+        tk.Frame.__init__(self, parent)
+
+        self.scale = tk.Scale(self, orient="horizontal",
+                              from_=0, to=600,
+                              showvalue=False,
+                              command=self._on_scale)
+        self.scale_label = tk.Label(self, text="")
+        self.scale.pack(side="top", fill="x")
+        self.scale_label.pack(side="top")
+
+    def _on_scale(self, value):
+        value = int(value)
+        minutes = value/60
+        seconds = value%60
+        self.scale_label.configure(text="%2.2d:%2.2d" % (minutes, seconds))
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    Example(root).pack(fill="both", expand=True);
+    root.mainloop()
