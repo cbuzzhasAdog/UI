@@ -16,12 +16,15 @@ def new():
 
 def getPos(val):
     scale1 = val
-    print(scale1)
+
+def doNothing():
+    print(" ")
+
 
 # Vars
 
 r = Tk()
-scale1 =
+scale1 = 0
 photoNum = 20
 r.title('Structure from Motion Control Panel')
 
@@ -39,12 +42,29 @@ editMenu = Menu(menu)
 menu.add_cascade(label="Edit", menu=editMenu)
 editMenu.add_command(label="Clear Data", command=clearData)
 
+# ***** The Toolbar *****
+
+toolbar = Frame(r, bg="blue")
+
+insertButt = Button(toolbar, text="Insert Image", command=doNothing)
+insertButt.pack(side=LEFT, padx=2, pady=2)
+printButt = Button(toolbar, text="Print", command=doNothing)
+printButt.pack(side=LEFT, padx=2, pady=2)
+
+toolbar.pack(side=TOP, fill=X)
+
+
+
+# ***** Status Bar *****
+
+status = Label(r, text="Preparing to do nothing...", bd=1, relief=SUNKEN, anchor=W)
+status.pack(side=BOTTOM, fill=X)
 
 w = Scale(r, from_=0, to=42, command=getPos)
 w.pack()
 
 w = Scale(r, from_=0, to=photoNum+scale1, orient=HORIZONTAL)
-w.pack()
-print(scale1)
+w.pack(side=BOTTOM, fill=X)
+
 mainloop()
 
