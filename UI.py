@@ -9,7 +9,9 @@ def clearData():
 def new():
     print('New')
 def getPos(val):
-    scale1 = val
+    v = w.get()
+    c.config(to=photoNum+v)
+
 
 def doNothing():
     print(" ")
@@ -58,8 +60,8 @@ status.pack(side=BOTTOM, fill=X)
 w = Scale(r, from_=0, to=42, command=getPos)
 w.pack()
 
-w = Scale(r, from_=0, to=photoNum+scale1, orient=HORIZONTAL)
-w.pack(side=BOTTOM, fill=X)
+c = Scale(r, from_=0, to=photoNum, orient=HORIZONTAL)
+c.pack(side=BOTTOM, fill=X)
 
 mainloop()
 

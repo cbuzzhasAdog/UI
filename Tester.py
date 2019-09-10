@@ -75,34 +75,78 @@
 # c.pack()
 #
 # root.mainloop()
-import tkinter as tk
+#
+from tkinter import *
 
-def startgame():
+def donothing():
+    print ('IT WORKED')
+root=Tk()
+root.title(string='LOGIN PAGE')
 
-    pass
+frame1=Frame(root)
+frame1.pack(side=TOP,fill=X)
 
-mw = tk.Tk()
+frame2=Frame(root)
+frame2.pack(side=TOP, fill=X)
 
-#If you have a large number of widgets, like it looks like you will for your
-#game you can specify the attributes for all widgets simply like this.
-mw.option_add("*Button.Background", "black")
-mw.option_add("*Button.Foreground", "red")
+m=Menu(frame1)
+root.config(menu=m)
 
-mw.title('The game')
-#You can set the geometry attribute to change the root windows size
-mw.geometry("1000x1000") #You want the size of the app to be 500x500
-mw.resizable(0, 0) #Don't allow resizing in the x or y direction
+submenu=Menu(m)
+m.add_cascade(label='File',menu=submenu)
+submenu.add_command(label='New File', command=donothing)
+submenu.add_command(label='Open', command=donothing)
+submenu.add_separator()
+submenu.add_command(label='Exit', command=frame1.quit)
 
-back = tk.Frame(master=mw,bg='black')
-back.pack_propagate(0) #Don't allow the widgets inside to determine the frame's width / height
-back.pack(fill=tk.BOTH, expand=1) #Expand the frame to fill the root window
 
-#Changed variables so you don't have these set to None from .pack()
-go = tk.Button(master=back, text='Start Game', command=startgame)
-go.pack()
-close = tk.Button(master=back, text='Quit', command=mw.destroy)
-close.pack()
-info = tk.Label(master=back, text='Made by me!', bg='red', fg='black')
-info.pack()
+editmenu=Menu(m)
+m.add_cascade(label='Edit', menu=editmenu)
+editmenu.add_command(label='Cut',command=donothing)
+editmenu.add_command(label='Copy',command=donothing)
+editmenu.add_command(label='Paste',command=donothing)
+editmenu.add_separator()
+editmenu.add_command(label='Exit', command=frame1.quit)
 
-mw.mainloop()
+
+# **** ToolBar *******
+
+toolbar=Frame(frame1,bg='grey')
+toolbar.pack(side=TOP,fill=X)
+btn1=Button(toolbar, text='Print', command=donothing)
+btn2=Button(toolbar, text='Paste', command=donothing)
+btn3=Button(toolbar, text='Cut', command=donothing)
+btn4=Button(toolbar, text='Copy', command=donothing)
+btn1.pack(side=LEFT,padx=2)
+btn2.pack(side=LEFT,padx=2)
+btn3.pack(side=LEFT,padx=2)
+btn4.pack(side=LEFT,padx=2)
+
+# ***** LOGIN CREDENTIALS ******
+label=Label(frame2,text='WELCOME TO MY PAGE',fg='red',bg='white')
+label.grid(row=3,column=1)
+
+label1=Label(frame2,text='Name')
+label2=Label(frame2,text='Password')
+label1.grid(row=4,column=0,sticky=E)
+label2.grid(row=5,column=0,sticky=E)
+
+entry1=Entry(frame2)
+entry2=Entry(frame2)
+entry1.grid(row=4,column=1)
+entry2.grid(row=5,column=1)
+
+chk=Checkbutton(frame2,text='KEEP ME LOGGED IN')
+chk.grid(row=6,column=1)
+
+btn=Button(frame2,text='SUBMIT')
+btn.grid(row=7,column=1)
+
+
+
+
+# **** StatusBar ******************
+
+status= Label(root,text='Loading',bd=1,relief=SUNKEN,anchor=W)
+status.pack(side=BOTTOM, fill=X)
+root.mainloop()
