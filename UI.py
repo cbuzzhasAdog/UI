@@ -4,16 +4,10 @@ from tkinter import *
 
 def save():
     print('saved')
-
-
 def clearData():
     print('Cleared Data')
-
-
 def new():
     print('New')
-
-
 def getPos(val):
     scale1 = val
 
@@ -30,6 +24,7 @@ r.title('Structure from Motion Control Panel')
 
 menu = Menu(r)
 r.config(menu=menu)
+r.geometry("1200x900")
 
 subMenu = Menu(menu)
 menu.add_cascade(label="File", menu=subMenu)
