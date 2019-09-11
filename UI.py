@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-
+from PIL import Image, ImageTk
 
 def save():
     print('saved')
@@ -18,12 +18,13 @@ def doNothing():
 
 
 # Vars
-
 r = Tk()
 scale1 = 0
 photoNum = 20
+
 r.title('Structure from Motion Control Panel')
 
+# **** Dropdown menu *******
 menu = Menu(r)
 r.config(menu=menu)
 r.geometry("1200x900")
@@ -40,7 +41,6 @@ menu.add_cascade(label="Edit", menu=editMenu)
 editMenu.add_command(label="Clear Data", command=clearData)
 
 # ***** The Toolbar *****
-
 toolbar = Frame(r, bg="blue")
 
 insertButt = Button(toolbar, text="Insert Image", command=doNothing)
@@ -50,10 +50,7 @@ printButt.pack(side=LEFT, padx=2, pady=2)
 
 toolbar.pack(side=TOP, fill=X)
 
-
-
 # ***** Status Bar *****
-
 status = Label(r, text="Preparing to do nothing...", bd=1, relief=SUNKEN, anchor=W)
 status.pack(side=BOTTOM, fill=X)
 
@@ -61,7 +58,15 @@ w = Scale(r, from_=0, to=42, command=getPos)
 w.pack()
 
 c = Scale(r, from_=0, to=photoNum, orient=HORIZONTAL)
+c.set(10)
 c.pack(side=BOTTOM, fill=X)
+load = Image.open("2.png")
+render = ImageTk.PhotoImage(load)
+
+# labels can be text or images
+img = Label(r, image=render)
+img.image = render
+img.pack()
 
 mainloop()
 
