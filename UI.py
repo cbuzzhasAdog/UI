@@ -8,11 +8,30 @@ def clearData():
     print('Cleared Data')
 def new():
     print('New')
+def openRunFile():
+    print ("open")
+def searchDialogue():
+    searchBox = Tk()
+    date = LabelFrame(searchBox,text="Date:", padx=5, pady=5)
+    date.grid(row=0, column=0,padx=1, pady=10)
+    dateEntry = Entry(date)
+    dateEntry.pack()
+    imageNum = LabelFrame(searchBox, text="Image Number:", padx=5, pady=5)
+    imageNum.grid(row=0, column=2, padx=1, pady=10)
+    imageNumEntry = Entry(imageNum)
+    imageNumEntry.pack()
+    runNumber = LabelFrame(searchBox, text="Run Number:", padx=5, pady=5)
+    runNumber.grid(row=0, column=3, padx=1, pady=10)
+    runNumberEntry = Entry(runNumber)
+    runNumberEntry.pack()
+    searchButton = Button(searchBox, text="Search", command=search.quit)
+    searchButton.grid(row=1,column=3)
+    searchBox.mainloop()
+def search():
+    return
 def getPos(val):
     v = w.get()
     c.config(to=photoNum+v)
-
-
 def doNothing():
     print(" ")
 
@@ -44,6 +63,9 @@ insertButt = Button(toolbar, text="Insert Image", command=doNothing)
 insertButt.pack(side=LEFT, padx=2, pady=2)
 printButt = Button(toolbar, text="Print", command=doNothing)
 printButt.pack(side=LEFT, padx=2, pady=2)
+search = Button(toolbar, text="Search", command=searchDialogue)
+search.pack(side=LEFT, padx=2, pady=2)
+
 toolbar.pack(side=TOP, fill=X)
 
 # ***** Status Bar *****
@@ -54,12 +76,15 @@ w.pack()
 c = Scale(r, from_=0, to=photoNum, orient=HORIZONTAL)
 c.set(10)
 c.pack(side=BOTTOM, fill=X)
+
+# Display Image
 load = Image.open("2.png")
 render = ImageTk.PhotoImage(load)
 
 # labels can be text or images
 img = Label(r, image=render)
 img.image = render
+
 img.pack()
 
 mainloop()

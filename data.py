@@ -25,6 +25,7 @@ def DataImport(CR):
     data = np.loadtxt("RunLog.csv", delimiter='  ')
     datai = data.astype(int)
     RunLog = datai
+    print('------------Run Log --------------')
     print(RunLog)
     CR = datai[datai.shape] + 1
     print(CR)

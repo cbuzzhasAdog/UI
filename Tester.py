@@ -184,7 +184,26 @@ class Window(Frame):
         menu = Menu(self.master)
         self.master.config(menu=menu)
 
+        # create the file object)
+        file = Menu(menu)
 
+        # adds a command to the menu option, calling it exit, and the
+        # command it runs on event is client_exit
+        file.add_command(label="Exit", command=self.client_exit)
+
+        # added "file" to our menu
+        menu.add_cascade(label="File", menu=file)
+
+        # create the file object)
+        edit = Menu(menu)
+
+        # adds a command to the menu option, calling it exit, and the
+        # command it runs on event is client_exit
+        edit.add_command(label="Show Img", command=self.showImg)
+        edit.add_command(label="Show Text", command=self.showText)
+
+        # added "file" to our menu
+        menu.add_cascade(label="Edit", menu=edit)
 
     def showImg(self):
         load = Image.open("2.png")
@@ -211,6 +230,6 @@ root.geometry("400x300")
 
 # creation of an instance
 app = Window(root)
-app.showImg()
+
 # mainloop
 root.mainloop()
